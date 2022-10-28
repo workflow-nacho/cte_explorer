@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 # data files
 
-MODELS = 'static\model'
+MODELS = 'static/model'
 
 
 def check_sql_models():
