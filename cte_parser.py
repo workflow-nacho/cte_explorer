@@ -13,7 +13,6 @@ class CTEParser():
         self.cte_code = cte_code
         self.model = {}
 
-
     @staticmethod
     def table_ref(table):
         """
@@ -115,17 +114,16 @@ class CTEParser():
         """
         
         self.scrub_query()
-
+        
         try:
             cte_collection = sqlglot.parse_one(
-                self.cte_code).find(exp.With).args['expressions']
+                self.cte_code, read="mysql").find(exp.With).args['expressions']
         except ParseError:
             etype, evalue, tb = sys.exc_info()
             msg = ' '.join(traceback.format_exception_only(etype, evalue))
             return (False, msg)
 
         for cte in cte_collection:
-
             cte_sql = format_sql(cte.sql().split(' ', 2)[-1], max_len=15)
             cte_columns = []
             cte_tables = []

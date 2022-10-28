@@ -2,3 +2,5 @@ __pycache__
 .vscode
 
 venv
+static/model/fixing_bug.json
+static/model/fixing_bug.sql

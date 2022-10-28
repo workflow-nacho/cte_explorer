@@ -33,7 +33,6 @@ div.success {
   padding: 10px;
   font-style: italic;
   color: white;
-
 }
 
 div.banner {
@@ -92,12 +91,12 @@ pre {
 
 #editor {
 
-  height: 250PX;
+  height: 200px;
   width: 100%
 }
 
 #editor2 {
 
-  height: 600PX;
+  height: 100vh;
   width: 100%
 }

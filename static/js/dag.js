@@ -1,12 +1,5 @@
 
-
-
-
-
-
 function build_dag(data) {
-
-
 
 // initialize panning, zooming
 const zoom = d3
