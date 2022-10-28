@@ -15,7 +15,9 @@ MODELS = 'static/model'
 
 
 def check_sql_models():
-    return [f.split('.')[0] for f in listdir(MODELS) if isfile(join(MODELS, f)) and f.split('.')[-1] == 'sql']
+    files_list = [f.split('.')[0] for f in listdir(MODELS) if isfile(join(MODELS, f)) and f.split('.')[-1] == 'sql']
+    #print(files_list)
+    return files_list
 
 
 def get_model(model_name, ftype):
@@ -42,8 +44,6 @@ def parse_error_json():
     ]
 
 # home route
-
-
 @app.route('/model/<model_name>')
 @app.route('/model/<model_name>/<msg>/<status>')
 def index(model_name, msg="", status=""):
@@ -57,6 +57,7 @@ def index(model_name, msg="", status=""):
     except FileNotFoundError:
         return redirect(url_for('home_page', msg="not_found"))
     model_code = model_file.read()
+    # remove break lines
     model_code = re.sub(r'\n{2,}', '\n', model_code)
     return render_template('index.html',
                            model_name=model_name,
@@ -110,7 +111,7 @@ def home_page(msg="Welcome"):
     if msg == 'not_found':
         msg = 'SQL File Not Found'
     else:
-        msg = "Welcome"
+        msg = "Welcome to Transformationflow IO"
     return render_template("home.html", saved_models=check_sql_models(), msg=msg)
 
 
